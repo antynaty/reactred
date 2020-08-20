@@ -22,36 +22,34 @@ const initSate = {
 }
 
 const reducerEntrenador = (state = initSate, action) => {
-  if (action.type === "AGREGAR_TITULAR") {
-    return {
-      ...state,
-      titulares: state.titulares.concat(action.jugador),
-      jugadores: state.jugadores.filter(jugador => jugador.id !== action.jugador.id)     // recorrer el array con filter y condicionar los que se parecen que no pasen
-    }
+  switch (action.type) {
+    case 'AGREGAR_TITULAR':
+      return {
+        ...state,
+        titulares: state.titulares.concat(action.jugador),
+        jugadores: state.jugadores.filter(jugador => jugador.id !== action.jugador.id)     // recorrer el array con filter y condicionar los que se parecen que no pasen
+      };
+    case 'AGREGAR_SUPLENTE':
+      return {
+        ...state,
+        suplentes: state.suplentes.concat(action.jugador),
+        jugadores: state.jugadores.filter(jugador => jugador.id !== action.jugador.id)     // recorrer el array con filter y condicionar los que se parecen que no pasen
+      };
+    case 'SACAR_TITULAR':
+      return {
+        ...state,
+        jugadores: state.jugadores.concat(action.titular),
+        titulares: state.titulares.filter(titular => titular.id !== action.titular.id)     // recorrer el array con filter y condicionar los que se parecen que no pasen
+      };
+    case 'SACAR_SUPLENTE':
+      return {
+        ...state,
+        jugadores: state.jugadores.concat(action.suplente),
+        suplentes: state.suplentes.filter(suplente => suplente.id !== action.suplente.id)     // recorrer el array con filter y condicionar los que se parecen que no pasen
+      }
+    default:
+      return state
   }
-  if (action.type === "AGREGAR_SUPLENTE") {
-    return {
-      ...state,
-      suplentes: state.suplentes.concat(action.jugador),
-      jugadores: state.jugadores.filter(jugador => jugador.id !== action.jugador.id)     // recorrer el array con filter y condicionar los que se parecen que no pasen
-    }
-  }
-  if (action.type === "SACAR_TITULAR") {
-    return {
-      ...state,
-      jugadores: state.jugadores.concat(action.titular),
-      titulares: state.titulares.filter(titular => titular.id !== action.titular.id)     // recorrer el array con filter y condicionar los que se parecen que no pasen
-    }
-  }
-  if (action.type === "SACAR_SUPLENTE") {
-    return {
-      ...state,
-      jugadores: state.jugadores.concat(action.suplente),
-      suplentes: state.suplentes.filter(suplente => suplente.id !== action.suplente.id)     // recorrer el array con filter y condicionar los que se parecen que no pasen
-    }
-  }
-  // console.log(action)
-  return state
 }
 
 export default createStore(reducerEntrenador);
