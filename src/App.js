@@ -1,9 +1,12 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import store from './store/store';
-import Jugadores from './components/Jugadores';
-import EquipoSeleccionado from './components/EquipoSeleccionado';
+
+// import { Provider } from 'react-redux';
+// import store from './reducers/store';
+// import Jugadores from './components/Jugadores';
+// import EquipoSeleccionado from './components/EquipoSeleccionado';
+
 import Operations from './components/Operations';
+import Users from './components/Users';
 
 import './App.css';
 function App() {
@@ -16,12 +19,12 @@ function App() {
     //     <EquipoSeleccionado />
     //   </div>
     // </Provider>
-    
-      <div className="App">
-        <h1>Gestiona tu TEAM</h1>
-        <Operations/>
-      </div>
-    
+
+    <div className="App">
+      <h1>Gestiona tu TEAM</h1>
+      <Operations />
+      <Users />
+    </div>
 
   );
 }
